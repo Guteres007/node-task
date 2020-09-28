@@ -1,9 +1,9 @@
 const mongose = require('mongoose')
 
-var testSchema = new mongose.Schema({
+var taskSchema = new mongose.Schema({
     name: {
         type: String
     }
 })
 
-mongose.model('Test', testSchema)
+mongose.model('Task', taskSchema)

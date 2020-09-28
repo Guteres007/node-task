@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/test', {
+mongoose.connect('mongodb://localhost/task-database', {
     useNewUrlParser: true,
     useCreateIndex: true },
     (err) => {
@@ -8,4 +8,4 @@ mongoose.connect('mongodb://localhost/test', {
     else {console.log("Disconnected")}
 })
 
-require('./test.model')
+require('./task.model')
