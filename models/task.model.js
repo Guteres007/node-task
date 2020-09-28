@@ -1,6 +1,6 @@
-const mongose = require('mongoose')
+const mongoose = require('mongoose')
 
-var taskSchema = new mongose.Schema({
+var taskSchema = new mongoose.Schema({
     name: {
         type: String
     },
@@ -9,4 +9,4 @@ var taskSchema = new mongose.Schema({
     }
 })
 
-mongose.model('Task', taskSchema)
+mongoose.model('Task', taskSchema)
