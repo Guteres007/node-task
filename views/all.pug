@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 all 
+
+  each val in tasks
+    li= val.name
+      a(href="/task/" + val.id ) smazat
+  
+  h2 Uložit task
+  form(action="/task" method="POST")
+    input(type="text", name="name")
+    button(type="submit") Submit
