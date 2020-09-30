@@ -16,7 +16,8 @@ exports.submitLead = async (req, res, next) =>{
 
 exports.showAll = async (req, res, next) => {
   const data = await Task.find({})
-  res.render('all', { tasks: data });
+    //zde by měl být flash message
+    res.render('all', { tasks: data, error: true });
 }
 
 exports.delete = async (req, res, next) => {
