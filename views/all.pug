@@ -1,13 +1,37 @@
 extends layout
 
 block content
-  h1 all 
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </nav>
 
-  each val in tasks
-    li= val.name
-      a(href="/task/" + val.id ) smazat
-  
-  h2 Uložit task
-  form(action="/task" method="POST")
-    input(type="text", name="name")
-    button(type="submit") Submit
+
+  .container 
+    .row 
+      .col-12
+        if error
+          <div class="alert alert-success alert-dismissible fade show text-center mt-4" role="alert">
+          <strong>Task byl přidán</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+
+  .container 
+    .row     
+      .col-6.offset-3.mt-4
+        h2 Vytvořit task
+        form(action="/task" method="POST")
+          .form-group
+            input(type="text", name="name", placeholder="Popisek").form-control
+          button(type="submit").btn.btn-primary Přidat nový task
+      .col-6.offset-3.mt-4
+        h1 Tasky 
+        ul.list-group
+        each val in tasks
+          li.list-group-item
+            form(action="/task/" + val.id + "/update" method="POST")
+              .form-group.d-flex.align-items-center
+                input(type="text", value=val.name, placeholder="Přidat task", name="name").form-control
+                button(type="submit").btn.btn-outline-warning.btn-sm.ml-2 editovat
+                a(href="/task/" + val.id ).btn.btn-outline-danger.btn-sm.ml-2 smazat

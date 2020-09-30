@@ -3,7 +3,7 @@ var Task = mongoose.model("Task")
 
 
 
-exports.submitLead = function(req, res, next) {
+exports.submitLead = async (req, res, next) =>{
   new Task(req.body).save().then(task => {
     if(task) {
       res.redirect('/tasks')
@@ -20,6 +20,14 @@ exports.showAll = async (req, res, next) => {
 }
 
 exports.delete = async (req, res, next) => {
-  const data = await Task.findOneAndDelete(req.body.id)
+  //console.log(req.params.id)
+  const data = await Task.findByIdAndRemove(req.params.id)
   res.redirect('/tasks')
+}
+
+exports.update = async (req,res, next) => {
+  await Task.findByIdAndUpdate(req.params.id , {name: req.body.name})
+  const data = await Task.find({})
+  //zde by měl být flash message
+  res.render('all', { tasks: data, error: true });
 }
