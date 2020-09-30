@@ -8,3 +8,4 @@ mongoose.connect('mongodb://localhost/task-database', {
     else {console.log("Disconnected")}
 })
 
+module.exports = mongoose
